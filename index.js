@@ -56,6 +56,41 @@ io.on('connection', (socket) => {
     });
 });
 
+const rooms = {};
+
+function createRoom(roomCode) {
+  rooms[roomCode] = {
+    players: [],
+    board: Array(9).fill(""),
+    turn: "X",
+    status: "waiting",
+    winner: null,
+    rematchReady: new Set()
+  };
+}
+
+function checkWinner(board) {
+  const wins = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ];
+  for (const [a,b,c] of wins) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return board[a];
+    }
+  }
+  return board.includes("") ? null : "draw";
+}
+
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
+app.get("/room/:code", (req, res) => res.render("game", { roomCode: req.params.code }));
+
+
+
 server.listen(3000, ()=>{
     console.log(`http://localhost:3000`);
 });
