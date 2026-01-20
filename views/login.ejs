@@ -1,15 +1,16 @@
 <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 text-center">
 
     <h3 class="mb-3">Belépés</h3>
-    <form>
+    <div>
         <div class="mb-3">
             <label class="form-label">Név</label>
-            <input type="text" class="form-control" placeholder="Add meg a neved...">
+            <input type="text" class="form-control" placeholder="Add meg a neved..." id="userNameInput">
         </div>
 
-        <div class="mb-4">
-            <label class="form-label">Szoba kód</label>
-            <input type="text" class="form-control" placeholder="Pl.: ABC123">
+        <label class="form-label">Szoba kód</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Pl.: ABC123" id="roomCodeInput">
+            <button class="btn btn-primary" onclick="generateRoomCode()"><i class="bi bi-arrow-repeat"></i></button>
         </div>
 
         <div class="d-grid">
@@ -17,5 +18,23 @@
                 Csatlakozás
             </button>
         </div>
-    </form>
+    </div>
 </div>
+
+<script>
+    let nameInput = document.getElementById("userNameInput");
+    let codeInput = document.getElementById("roomCodeInput");
+
+    function generateRoomCode() {
+        codeInput.value = createRandomString(6);
+    }
+
+    function createRandomString(length) {
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let result = "";
+        for (let i = 0; i < length; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
+</script>
