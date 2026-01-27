@@ -1,8 +1,10 @@
     <div class="row justify-content-center">
         <div class="card shadow p-4 col-md-10 col-lg-8 col-xl-6">
             <h3 class="text-center mb-3">Tic Tac Toe</h3>
-            <h4>Szobakód: <%= roomCode %></h4>
-            <h4>Username: <%= username %></h4>
+            <h4>Szobakód: <%= roomConfig.roomCode %></h4>
+            <h4>Username: <%= roomConfig.username%></h4>
+            <h4 id="playerSymbol"></h4>
+            <h3 id="winner" style="text-align: center;"></h3>
             <div class="container text-center">
                 <div class="row g-0">
                     <div class="col-4 border">
@@ -39,8 +41,8 @@
                 </div>
             </div>
             <div class="text-center mt-3">
-                <p class="mb-2 fw-semibold">Player X mozdul</p>
-                <button class="btn btn-primary">Játék reset</button>
+                <p class="mb-2 fw-semibold" id="turnDisplay">Player X mozdul</p>
+                <button class="btn btn-primary" id="resetBtn">Játék reset</button>
             </div>
         </div>
     </div>
